@@ -1,0 +1,22 @@
+This is a library for reading zipfiles.
+
+It's most notable feature is that it is not based on Info-Zip, but it's also
+very easy to use:
+
+    #include <stdlib.h>
+    #include <stdio.h>
+
+    #include "zipreader.h"
+
+    int main(int argc, char *argv[])
+    {
+            zipreader *z;
+            zipreader_file *f;
+            z = zipreader_open(0);
+            f = zipreader_seek(z, "./README");
+            if (!f || !zipreader_extract(f,1)) {
+                    puts("err");
+                    exit(1);
+            }
+            exit(0);
+    }
